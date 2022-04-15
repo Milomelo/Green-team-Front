@@ -100,7 +100,7 @@ async function join(){
     // (3) 회원가입이 잘되면 알림창 띄우고 로그인 페이지로 이동한다.
     if (responseParse.code == 1) {
         alert("회원가입 완료");
-        location.href = "/loginForm";
+        location.href = "/login-form";
     } else {
         alert("회원가입 실패");
     }

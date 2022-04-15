@@ -26,9 +26,9 @@ public class UserController {
         return "user/loginForm";
     }
 
-    @GetMapping("/s/user/blog")
+    @GetMapping("/s/user/my-blog")
     public String blog() {
-        return "user/blog";
+        return "user/myBlog";
     }
 
     // 앱은 얘 요청안함

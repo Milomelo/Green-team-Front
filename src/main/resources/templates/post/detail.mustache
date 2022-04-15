@@ -1,24 +1,131 @@
 {{> /layout/header}}
 
 <!-- 컨테이너 시작 -->
-<div class="container mt-3">
-
-    <!-- 상세정보보기 시작 -->
-    <div class="mb-3">
-        작성자 : 유저네임
+<div class="container">
+    <!-- 블로그 제목, 정보 시작-->
+    <div class="box-form4">
+        <div class="col-sm-6 px-1">
+            <div class="blog-flex-start  pt-4">
+                <h1 class="card-title">2022년 팬톤 올해의 컬러! 베리 페리(Very Peri)</h1>
+            </div>
+            <div class="box-form3">
+                <div class="blog-flex-start pt-3">
+                    <span class="card-title">suhyeon5028</span>
+                    <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+                    <span>날짜</span>
+                    <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+                    <span class="badge bg-dark"><i class="fa-solid fa-lock" style="color: white;"></i>&nbsp;&nbsp;비공개</span>
+                </div>
+                <div class="blog-flex-end">
+                    <button class="blog-update-delete" onclick="location.href='/s/post/update-form' ">수정</button>
+                    <!-- Button to Open the Modal -->
+                    <button class="blog-update-delete" data-bs-toggle="modal" data-bs-target="#myModal">삭제</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3 mt-3">
-        <h1>제목입니다</h1>
-    </div>
-    <hr />
-    <div class="mb-3">
-        내용입니다
-    </div>
+    <!-- 블로그 제목, 정보 끝-->
 
-    <a href="/s/post/1/updateForm" class="btn btn-dark">수정</a>
-    <button class="btn btn-danger">삭제</button>
+    <!-- 삭제 모달 시작 -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content modal-color">
 
-    <!-- 상세정보보기 끝 -->
+                <!-- Modal body -->
+                <div class="modal-body">
+                    삭제할까요?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer box-form4">
+                    <button type="button" class="modal-cancel-btn" data-dismiss="modal">아니오</button>
+                    <button type="button" class="modal-submit-btn" data-dismiss="modal">네</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 삭제 모달 끝 -->
+
+    <!-- 블로그 내 포스트 시작-->
+    <div class="row blog-flex-around my-3">
+
+        <!-- 블로그 좋아요, 링크 시작-->
+        <div class="col-sm-3 blog-flex-end">
+          <div class="like-form">
+
+            <button class="blog-like"><i class="fa-solid fa-heart fa-lg"></i></button>
+
+            <div class="blog-like-count">100</div>
+
+            <button class="blog-share"><i class="fa-solid fa-paperclip fa-lg"></i></button>
+
+          </div>
+        </div>
+        <!-- 블로그 좋아요, 링크 끝-->
+
+        <!-- 블로그 포스트 시작-->
+        <div class="col-sm-6">
+            
+            <div class="blog-flex-center">
+                <div class="detail-img">
+                    <img class="detail-img" src="/src/main/resources/static/image/Very_Peri.jpg">
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                </div>
+            </div>
+            <div class="blog-flex-start mt-5">
+                <div class="blog-flex-start blog-profile">
+                    <div class="mr-2 col-2 blog-profile-img">
+                      <img src="/src/main/resources/static/image/coomon.jpg" alt="Profile" class="rounded-circle profile">
+                    </div>
+                    <div class="flex-grow-1">
+                      <div class="blog-user">suhyeon5028</div>
+                      <div>어쩌구 저쩌구 블라블라~어쩌구 저쩌구 블라블라~어쩌구 저쩌구 블라블라~</div>
+                    </div>
+                  </div>
+                  <hr />
+            </div>
+            <div class="box-form3 my-5">
+                <div class="blog-flex-start">
+                    <button class="btn"><i class="fa-solid fa-chevron-left"></i>&nbsp;prev</button>
+                </div>
+                <div class="blog-flex-end">
+                    <button class="btn">next&nbsp;<i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="blog-flex-start">
+                    <div>~개의 댓글</div>
+                </div>
+                <div class="blog-flex-center my-2">
+                    <textarea class="blog-comment" placeholder="댓글을 작성하세요"></textarea>
+                </div>
+                <div class="blog-flex-end">
+                    <button class="btn">댓글작성</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- 블로그 포스트 끝-->
+
+        <!-- 블로그 빈칸 시작-->
+        <div class="col-sm-3 blog-box"></div>
+        <!-- 블로그 빈칸 끝-->
+
+    </div>
+    <!-- 블로그 내 포스트 끝-->
+
 </div>
 <!-- 컨테이너 끝 -->
 

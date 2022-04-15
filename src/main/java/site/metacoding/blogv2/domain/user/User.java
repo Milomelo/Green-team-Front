@@ -41,7 +41,7 @@ public class User {
     @Column(length = 20, nullable = false)
     private String password;
 
-    @Column(length = 60, nullable = false)
+    @Column(length = 100, nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "user") // 연관관계의 주인의 변수명

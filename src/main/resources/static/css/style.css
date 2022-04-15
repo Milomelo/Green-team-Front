@@ -19,7 +19,8 @@
   font-style: normal;
 }
 
-/* div{border: 1px solid black;} */
+/* div{border: 1px solid black;
+padding: 2px;} */
 
 body{
   font-family: 'GimpoGothicRegular00';
@@ -384,6 +385,22 @@ body{
   background-color: #6667ab;
   box-shadow: none;
 }
+.back-btn{
+  width: 100px;
+  height: 40px;
+  padding-top: 10px;
+  color: white;
+  background-color: rgb(172, 172, 172);
+  border: 0;
+  border-radius: 20px;
+}
+.back-btn:hover, .back-btn:active, .back-btn:focus {
+  border: none;
+  outline: none;
+  color: white;
+  background-color: rgb(172, 172, 172);
+  box-shadow: none;
+}
 .submit-btn{
   width: 100%;
   height: 50px;
@@ -412,6 +429,55 @@ body{
   background-color: #6667ab;
   border: 0;
   border-radius: 20px;
+}
+.blog-like{
+  width: 40px;
+  height: 40px;
+  padding-top: 8px;
+  color: #868e96;
+  background-color: white;
+  border: 2px solid #dee2e6;
+  border-radius: 20px;
+  margin: 6px 4px;
+  display: block;
+}
+.blog-like:hover, .blog-like:active {
+  border: 2px solid black;
+  outline: none;
+  color: black;
+  background-color: white;
+  box-shadow: none;
+}
+.blog-like:focus {
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #6667ab;
+  box-shadow: none;
+}
+.blog-share{
+  width: 40px;
+  height: 40px;
+  padding-top: 8px;
+  color: #868e96;
+  background-color: white;
+  border: 2px solid #dee2e6;
+  border-radius: 20px;
+  margin: 6px 4px;
+  display: block;
+}
+.blog-share:hover, .blog-share:active {
+  border: 2px solid black;
+  outline: none;
+  color: black;
+  background-color: white;
+  box-shadow: none;
+}
+.blog-update-delete {
+  border: none;
+  outline: none;
+  color: #868e96;
+  background-color: #ffffff00;
 }
 /* 버튼타입 */
 
@@ -519,8 +585,20 @@ body{
   border: none;
   background: none;
 }
+.blog-comment {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  font-size: smaller;
+  padding: 12px;
+  border: 2px solid #f1f3f5;
+}
+.blog-comment:focus {
+  outline: none;
+}
 /* 내블로그 */
 
+/* 마진 */
 .my-mtb{
   margin: 30px 0;
 }
@@ -535,4 +613,65 @@ body{
 .vl {
   border-left: 1px solid #ced4da;
   height: 250px;
+}
+
+/* 포스트 디테일 */
+.like-form{
+  width: 55px;
+  height: 130px;
+  border: 2px solid #f1f3f5;
+  border-radius: 30px;
+  background-color: #f8f9fa;
+}
+.blog-like-count{
+  font-size: xx-small;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.detail-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 포스트삭제 모달 */
+.modal-color {
+  background-color: rgb(237, 237, 237);
+}
+.modal-body {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-cancel-btn {
+  background-color: rgb(172, 172, 172);
+  color: white;
+  width: 100px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  padding-top: 5px;
+}
+.modal-submit-btn {
+  background-color: #6667ab;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  padding-top: 5px;
+}
+/* 포스트삭제 모달 */
+
+.badge{
+  width: 70px;
+  height: 20px;
+}
+
+.note-quill {
+  width: 100%;
+  height: 550px;
 }
