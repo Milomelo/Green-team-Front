@@ -7,23 +7,36 @@
         <div class="box-form5">
             <div class="col-sm-3">
                 <div class="box-form4 my-4">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" class="rounded-circle" width="160px" height="160px">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU"
+                        class="rounded-circle" width="160px" height="160px">
                 </div>
                 <div class="box-form4 my-4">
-                    <button type="submit" class="image-upload-btn">이미지 업로드</button>
+                    <div class="image-upload-btn" onclick="onclick=document.all.file.click()">이미지 업로드
+                        <form action="/upload" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" id="file" style="display:none">
+                            <br />
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="mx-4 vl"></div>
             <div class="box-form4 flex-grow-1">
                 <form class="my-3">
                     <div class="box-form6">
-                        <input type="text" class="form-control update-input-form" id="profilename" placeholder="Profile name" maxlength="20">
-                        <input type="text" class="form-control update-input-form" id="blogname" placeholder="Blog name" maxlength="20">
-                        <input type="password" class="form-control update-input-form" id="password" placeholder="Password" maxlength="20">
-                        <input type="email" class="form-control update-input-form" id="email" placeholder="E-mail" maxlength="60">
+                        <input type="hidden" id="id" value="{{user.id}}">
+                        <input type="text" class="form-control update-input-form" value="{{user.username}}"
+                            id="username" placeholder="username" maxlength="20" readonly>
+                        <input type="text" class="form-control update-input-form" value="{{user.blogname}}"
+                            id="blogname" placeholder="blogname" maxlength="20" required>
+                        <input type="text" class="form-control update-input-form" id="blogtitle" placeholder="blogtitle"
+                            maxlength="100" value="{{user.blogtitle}}">
+                        <input type="password" class="form-control update-input-form" value="{{user.password}}"
+                            id="password" placeholder="Password" maxlength="20" id="password" required>
+                        <input type="email" class="form-control update-input-form" value="{{user.email}}" id="email"
+                            placeholder="E-mail" maxlength="60" id="email" required>
                     </div>
-                    <div class="blog-flex-end">                        
-                        <button type="submit" class="btn">수정하기</button>
+                    <div class="blog-flex-end">
+                        <button id="btn-updateUse" type="button" class="btn" onclick="updateUser()">수정하기</button>
                     </div>
                 </form>
             </div>
@@ -32,7 +45,42 @@
     <!-- 유저수정 폼 끝 -->
 </div>
 
-<script src="/js/user.js"></script>
+<script>
+    $("#btn-updateUser").click(() => {
+        updateUser();
+    });
+
+    async function updateUser() {
+        let id = $("#id").val();
+        console.log(id);
+        let updateDto = {
+            blogname: $("#blogname").val(),
+            blogname: $("#blogname").val(),
+            blogtitle: $("#blogtitle").val(),
+            password: $("#password").val(),
+            email: $("#email").val(),
+            imgurl: $("#imgurl").val(),
+        }
+
+        let response = await fetch(`/s/api/user/update/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(updateDto),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        });
+        let responseParse = await response.json();
+        console.log(responseParse);
+        if (responseParse.code == 1) {
+            alert("업데이트 성공");
+            location.href = `/s/user/${id}`;
+        } else {
+
+            alert("업데이트 실패");
+        }
+    }
+
+</script>
 
 <!-- 컨테이너 끝 -->
 

@@ -1,4 +1,4 @@
-package site.metacoding.blogv2.web.api.dto.user;
+package site.metacoding.blogv2.web.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UpdateDto {
+    private String blogname;
     private String password;
     private String email;
-    private String addr;
+    private String blogtitle;
+    private String imgurl;
 }

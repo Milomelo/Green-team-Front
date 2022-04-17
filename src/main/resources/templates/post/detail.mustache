@@ -6,21 +6,25 @@
     <div class="box-form4">
         <div class="col-sm-6 px-1">
             <div class="blog-flex-start  pt-4">
-                <h1 class="card-title">2022년 팬톤 올해의 컬러! 베리 페리(Very Peri)</h1>
+                <h1 class="card-title">{{post.title}}</h1>
             </div>
             <div class="box-form3">
                 <div class="blog-flex-start pt-3">
-                    <span class="card-title">suhyeon5028</span>
+                    <span class="card-title">{{post.user.username}}</span>
                     <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
                     <span>날짜</span>
+                    {{#pageOwner}}
                     <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
                     <span class="badge bg-dark"><i class="fa-solid fa-lock" style="color: white;"></i>&nbsp;&nbsp;비공개</span>
+                    {{/pageOwner}}
                 </div>
+                {{#pageOwner}}
                 <div class="blog-flex-end">
-                    <button class="blog-update-delete" onclick="location.href='/s/post/update-form' ">수정</button>
+                    <button class="blog-update-delete" onclick="location.href='/s/post/{{post.id}}/updateForm' ">수정</button>
                     <!-- Button to Open the Modal -->
                     <button class="blog-update-delete" data-bs-toggle="modal" data-bs-target="#myModal">삭제</button>
                 </div>
+                {{/pageOwner}}
             </div>
         </div>
     </div>
@@ -39,8 +43,8 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer box-form4">
-                    <button type="button" class="modal-cancel-btn" data-dismiss="modal">아니오</button>
-                    <button type="button" class="modal-submit-btn" data-dismiss="modal">네</button>
+                    <button type="button" class="modal-cancel-btn" data-bs-dismiss="modal">아니오</button>
+                    <button id="btn-delete" type="button" class="modal-submit-btn" data-dismiss="modal">네</button>
                 </div>
 
             </div>
@@ -71,31 +75,26 @@
             <div class="blog-flex-center">
                 <div class="detail-img">
                     <img class="detail-img" src="/src/main/resources/static/image/Very_Peri.jpg">
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-                    <p>팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
+                    {{{post.content}}}
                 </div>
             </div>
+
             <div class="blog-flex-start mt-5">
                 <div class="blog-flex-start blog-profile">
-                    <div class="mr-2 col-2 blog-profile-img">
-                      <img src="/src/main/resources/static/image/coomon.jpg" alt="Profile" class="rounded-circle profile">
+                    <div class="col-2 blog-profile-img">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
                     </div>
-                    <div class="flex-grow-1">
-                      <div class="blog-user">suhyeon5028</div>
-                      <div>어쩌구 저쩌구 블라블라~어쩌구 저쩌구 블라블라~어쩌구 저쩌구 블라블라~</div>
+                    <div class="mx-2 flex-grow-1">
+
+                        <div class="blog-user">터키로그</div>
+                        <div>터키아이스크림~소개소개~</div>
+                        <div>터키즈</div>
+
                     </div>
                   </div>
                   <hr />
             </div>
+
             <div class="box-form3 my-5">
                 <div class="blog-flex-start">
                     <button class="btn"><i class="fa-solid fa-chevron-left"></i>&nbsp;prev</button>
@@ -111,8 +110,80 @@
                 <div class="blog-flex-center my-2">
                     <textarea class="blog-comment" placeholder="댓글을 작성하세요"></textarea>
                 </div>
-                <div class="blog-flex-end">
+                <div class="blog-flex-end mb-3">
                     <button class="btn">댓글작성</button>
+                </div>
+            </div>
+            <div>
+                <div class="my-3">
+                    <div class="my-3">
+                        <div class="mb-3 blog-flex-start blog-profile">
+                            <div class="col-2 comment-profile-img">
+                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
+                            </div>
+                            <div class="mx-2 flex-grow-1 comment-profile">
+                                <div class="blog-user">1</div>
+                                <div>작성일</div>
+                            </div>
+                          </div>
+                          <div>
+                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
+                          </div>
+                    </div>
+                    
+                    <hr />
+
+                    <div class="my-3">
+                        <div class="mb-3 blog-flex-start blog-profile">
+                            <div class="col-2 comment-profile-img">
+                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
+                            </div>
+                            <div class="mx-2 flex-grow-1 comment-profile">
+                                <div class="blog-user">2</div>
+                                <div>작성일</div>
+                            </div>
+                          </div>
+                          <div>
+                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
+                          </div>
+                    </div>
+                    
+                    <hr />
+
+                    <div class="my-3">
+                        <div class="mb-3 blog-flex-start blog-profile">
+                            <div class="col-2 comment-profile-img">
+                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
+                            </div>
+                            <div class="mx-2 flex-grow-1 comment-profile">
+                                <div class="blog-user">3</div>
+                                <div>작성일</div>
+                            </div>
+                          </div>
+                          <div>
+                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
+                          </div>
+                    </div>
+                    
+                    <hr />
+
+                    <div class="my-3">
+                        <div class="mb-3 blog-flex-start blog-profile">
+                            <div class="col-2 comment-profile-img">
+                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
+                            </div>
+                            <div class="mx-2 flex-grow-1 comment-profile">
+                                <div class="blog-user">4</div>
+                                <div>작성일</div>
+                            </div>
+                          </div>
+                          <div>
+                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
+                          </div>
+                    </div>
+                    
+                    <hr />
+
                 </div>
             </div>
 
@@ -128,5 +199,27 @@
 
 </div>
 <!-- 컨테이너 끝 -->
+
+
+<script>
+    async function deleteById() {
+        let id = $("#id").val();
+        let response = await fetch("/s/post/" + id, {
+            method: "DELETE"
+        });
+        let responseObject = await response.json();
+        if (responseObject.code == 1) {
+            alert("삭제성공");
+            location.href = "/";
+        } else {
+            alert("삭제실패");
+            console.log(responseObject.msg);
+        }
+    }
+    $("#btn-delete").click((event) => {
+        // DELETE, /post/{id}
+        deleteById();
+    });
+</script>
 
 {{> /layout/footer}}

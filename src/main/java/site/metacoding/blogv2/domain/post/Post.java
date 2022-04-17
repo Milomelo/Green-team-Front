@@ -3,6 +3,7 @@ package site.metacoding.blogv2.domain.post;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -46,15 +48,15 @@ public class Post {
     @Column(nullable = true)
     private String content;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = true)
     private String thumnail;
 
-    @JsonIgnore
     @JoinColumn(name = "userId")
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-    @OneToMany(mappedBy = "post") // 연관관계의 주인의 변수명
+    @JsonIgnoreProperties({ "post" }) // messageConverter에게 알려주는 어노테이션
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE) // 연관관계의 주인의 변수명
     private List<Comment> comments;
 
     @JoinColumn(name = "categoryId")

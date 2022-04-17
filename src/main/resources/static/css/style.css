@@ -286,7 +286,7 @@ body{
 /* 카드포스트 */
 .card{
   width: 31%;
-  margin: 1%;
+  margin: 1.1%;
   padding: 0;
   border: 0;
   border-radius: 5px;
@@ -424,24 +424,25 @@ body{
 .image-upload-btn{
   width: 160px;
   height: 40px;
-  padding-top: 8px;
+  padding-top: 10px;
+  padding-left: 35px;
   color: white;
   background-color: #6667ab;
   border: 0;
   border-radius: 20px;
 }
 .blog-like{
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 43px;
   padding-top: 8px;
   color: #868e96;
   background-color: white;
   border: 2px solid #dee2e6;
-  border-radius: 20px;
+  border-radius: 25px;
   margin: 6px 4px;
   display: block;
 }
-.blog-like:hover, .blog-like:active {
+.blog-like:hover {
   border: 2px solid black;
   outline: none;
   color: black;
@@ -456,13 +457,13 @@ body{
   box-shadow: none;
 }
 .blog-share{
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 43px;
   padding-top: 8px;
   color: #868e96;
   background-color: white;
   border: 2px solid #dee2e6;
-  border-radius: 20px;
+  border-radius: 25px;
   margin: 6px 4px;
   display: block;
 }
@@ -489,6 +490,24 @@ body{
   width: 100%;
   height: 35px;
   margin-bottom: 15px;
+}
+
+.center-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.write-form {
+  width: 100%;
+  height: 100vh;
+}
+
+.list-form {
+  display: flex;
+  justify-content: start;
+  padding: auto;
 }
 
 .box-form1 {
@@ -530,16 +549,6 @@ body{
   color: black;
   text-decoration: none;
 }
-
-/* 회원가입-나가기 */
-.exit-link{
-  color: white;
-  text-decoration: none;
-}
-.exit-link:hover {
-  color: white;
-}
-/* 회원가입-나가기 */
 
 /* 내블로그 */
 .blog-flex-around {
@@ -665,6 +674,15 @@ body{
   padding-top: 5px;
 }
 /* 포스트삭제 모달 */
+
+/* 댓글 */
+.comment-profile-img {
+  width: 60px;
+}
+.comment-profile {
+  font-size: small;
+}
+/* 댓글 */
 
 .badge{
   width: 70px;

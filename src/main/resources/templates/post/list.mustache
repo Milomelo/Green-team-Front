@@ -19,63 +19,10 @@
   <!-- 탭 끝 -->
 
     <!-- 게시글 아이템 시작 -->
-  <div class="row d-flex justify-content-between">
+  <div class="row row-cols-3 list-form" id="post-box">
 
-    <div class= "col-3 card">
-      <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">2022년 팬톤 올해의 컬러! 베리 페리(Very Peri)</h4>
-        <p class="card-text">팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-        <p>작성일 · 댓글수</p>
-        <div class="card-profile">
-          <a href="#" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by suhyeon5028</a>
-          <span class="likey"><i class="fa-solid fa-heart"></i></span>
-        </div>        
-      </div>
-    </div>
 
-    <div class= "col-3 card">
-      <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">2022년 팬톤 올해의 컬러! 베리 페리(Very Peri)</h4>
-        <p class="card-text">팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-        <p>작성일 · 댓글수</p>
-        <div class="card-profile">
-          <a href="#" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by suhyeon5028</a>
-          <span class="likey"><i class="fa-solid fa-heart"></i></span>
-        </div>        
-      </div>
-    </div>
-
-    <div class= "col-3 card">
-      <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">2022년 팬톤 올해의 컬러! 베리 페리(Very Peri)</h4>
-        <p class="card-text">팬톤은 "우리가 사는 격변의 시대를 상징하는 색이다. '베리 페리'는 격리의 시간을 통과하며 겪는 현실과 디지털 생활의 융합을 표현했다."고 설명했습니다.</p>
-        <p>작성일 · 댓글수</p>
-        <div class="card-profile">
-          <a href="#" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by suhyeon5028</a>
-          <span class="likey"><i class="fa-solid fa-heart"></i></span>
-        </div>        
-      </div>
-    </div>
-
-    <div class="row d-flex justify-content-between">
-      {{#boards}}
-      <div class= "col-3 card">
-        <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">{{title}}</h4>
-          <p class="card-text">{{content}}</p>
-          <p>{{createDate}}</p>
-          <div class="card-profile">
-            <a href="#" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by {{username}}</a>
-            <span class="likey"><i class="fa-solid fa-heart"></i></span>
-          </div>        
-        </div>
-      </div>
-      {{/boards}}
-    </div>
+</div>
     <!-- 게시글 아이템 끝 -->
 
     <!-- 페이징 시작 -->
@@ -95,6 +42,98 @@
     <!-- 페이징 끝 -->
 
 </div>
+
+<script>
+    let page = 0;
+    let keyword = $("#keyword").val(""); // 초기화
+
+    // 이전버튼 이벤트
+    $("#btn-prev").click(() => {
+        page--;
+        // console.log("현재 페이지 : " + page);
+
+        $("#post-box").empty();
+        let keyword = $("#keyword").val(); // 키워드 가지고 가야함
+
+        list(keyword);
+    });
+
+    // 다음버튼 이벤트
+    $("#btn-next").click(() => {
+        page++;
+        // console.log("현재 페이지 : " + page);
+
+        $("#post-box").empty();
+        let keyword = $("#keyword").val();
+
+        list(keyword);
+    });
+
+    // 검색버튼 이벤트
+    $("#btn-search").click(() => {
+        page = 0; // 페이지 초기화 검색한 페이지가 0번!
+
+        keyword = $("#keyword").val();
+        $("#post-box").empty();
+
+        list(keyword);
+    });
+
+    async function list(keyword) {
+        // alert(page);
+
+        let response = await fetch(`/api/list?page=${page}&keyword=${keyword}`);
+        let responseParse = await response.json();
+
+        console.log(responseParse);
+        console.log(responseParse.first);
+
+        if (response.status === 200) {
+            pagingDisabled(responseParse);
+
+            responseParse.content.forEach((post) => {
+                $("#post-box").append(postItemRender(post));
+            });
+        } else {
+            alert("잘못된 요청입니다.");
+        }
+    }
+
+    function postItemRender(post) {
+        return `
+    <div class= "col card">
+      <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
+      <div class="card-body">
+        <h4 class="card-title"> <a href="/post/${post.id}">${post.title}</a></h4>
+        <p class="card-text"> <a href="/post/${post.id}">${post.content}</a></p>
+        <p>작성일 · 댓글수</p>
+        <div class="card-profile">
+          <a href="#" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by suhyeon5028</a>
+   <i id="Like-btn${post.id}" class="far fa-heart m_set_pointer" onclick="like()"></i>
+        </div>        
+      </div>
+    </div>`;
+    }
+
+    function pagingDisabled(responseParse) {
+        if (responseParse.first == true) {
+            $("#li-prev").addClass("disabled");
+            $("#li-next").removeClass("disabled");
+        } else if (responseParse.last == true) {
+            $("#li-prev").removeClass("disabled");
+            $("#li-next").addClass("disabled");
+        } else {
+            $("#li-prev").removeClass("disabled");
+            $("#li-next").removeClass("disabled");
+        }
+    }
+
+    list("");
+
+</script>
+
 <!-- 컨테이너 끝 -->
+
+
 
 {{> /layout/footer}}

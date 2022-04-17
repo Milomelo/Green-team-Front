@@ -1,6 +1,9 @@
 package site.metacoding.blogv2.domain.comment;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +25,7 @@ import site.metacoding.blogv2.domain.user.User;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Comment {
 
@@ -28,14 +35,15 @@ public class Comment {
 
     private String content;
 
-    @JsonIgnore
+    @JoinColumn(name = "postId")
+    @ManyToOne
+    private Post post;
+
     @JoinColumn(name = "userId")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private User user;
 
-    @JsonIgnore
-    @JoinColumn(name = "postId")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Post post;
+    @CreatedDate // insert
+    private LocalDateTime createDate;
 
 }

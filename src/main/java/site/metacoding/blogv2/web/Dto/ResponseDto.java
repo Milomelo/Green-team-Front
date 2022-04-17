@@ -1,14 +1,14 @@
-package site.metacoding.blogv2.web.api.dto;
+package site.metacoding.blogv2.web.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResponseDto<T> {
-    private Integer code;
+    private int code; // 1성공 -1실패 (enum)
     private String msg;
-    private T data;
+    private T body;
 }

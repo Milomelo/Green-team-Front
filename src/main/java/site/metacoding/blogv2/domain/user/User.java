@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -22,6 +23,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import site.metacoding.blogv2.domain.comment.Comment;
 import site.metacoding.blogv2.domain.post.Post;
+
+import javax.persistence.Transient;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,19 +44,22 @@ public class User {
     @Column(length = 20, nullable = false)
     private String password;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 60, nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "user") // 연관관계의 주인의 변수명
-    private List<Post> post;
+    private String imgurl; // 사진의 경로
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user") // 연관관계의 주인의 변수명
-    private List<Comment> comments;
+    private String blogname;
+
+    @Column(nullable = true)
+    private String blogtitle;
 
     @CreatedDate // insert 할때만 동작
     private LocalDateTime createDate;
     @LastModifiedDate // update 할때만 동작
     private LocalDateTime updateDate;
+
+    @Transient
+    private String remember;
 
 }

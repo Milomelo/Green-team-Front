@@ -1,32 +1,31 @@
 {{> /post/header}}
 
-<!-- 컨테이너 시작 -->
-<div class="container mt-3">
-
-    <!-- 글 수정하기 폼 시작 -->
-    <div>
-    <form class="note-quill">
-        <div id="editor">
-            <p>Hello World!</p>
-            <p>Some initial <strong>bold</strong> text</p>
-            <p><br></p>
-        </div>
-        <br />
-        <div class="box-form3">
-            <button class="back-btn" id="btn-write" type="button">나가기</button>
-            <button class="btn" id="btn-write" type="button">수정하기</button>
-        </div>
-    </form>
+<!-- 글수정 폼 시작 -->
+<div class="write-form">
+  <form action="/s/post" method="post">
+    <input type="hidden" id="id" value="{{post.id}}">
+      <div class="mb-3 mt-3">
+          <input name="title" type="text" class="form-control" placeholder="Enter title" id="title" value="{{post.title}}">
+      </div>
+      <div class="mb-3">
+          <textarea name="content" class="form-control" rows="30vh" id="content">{{post.content}}</textarea>
+      </div>
+      <div class="box-form3">
+          <button class="back-btn" type="button" onclick="location.href='/'">나가기</button>
+          <button type="button" class="btn" id="btn-update">수정완료</button>
+      </div>
+  </form>
 </div>
-    <!-- 글 수정하기 폼 끝 -->
-    
-</div>
-<!-- 컨테이너 끝 -->
+<!-- 글수정 폼 끝 -->
 
 <script>
-    var quill = new Quill('#editor', {
-      theme: 'snow'
+  $('#content').summernote({
+    height: 300
+  });
+
+      $("#btn-update").click((event) => {
+        alert("눌러짐");
     });
-  </script>
+</script>
 
 {{> /layout/footer}}
