@@ -1,5 +1,8 @@
 {{> /post/header}}
 
+<!-- 컨테이너 시작 -->
+<div class="container box-form4">
+
 <!-- 글쓰기 폼 시작 -->
 <div class="write-form">
     <form action="/s/post" method="post">
@@ -7,7 +10,7 @@
             <input name="title" type="text" class="form-control" placeholder="Enter title">
         </div>
         <div class="mb-3">
-            <textarea name="content" class="form-control" rows="34vh" id="content"></textarea>
+            <textarea name="content" class="form-control" rows="40vh" id="content" style="resize: none;"></textarea>
         </div>
         <div class="box-form3">
             <button class="back-btn" type="button" onclick="location.href='/'">나가기</button>
@@ -16,6 +19,9 @@
     </form>
 </div>
 <!-- 글쓰기 폼 끝 -->
+
+</div>
+<!-- 컨테이너 끝 -->
 
 <script>
     var quill = new Quill('#content', {

@@ -1,5 +1,8 @@
 {{> /post/header}}
 
+<!-- 컨테이너 시작 -->
+<div class="container box-form4">
+
 <!-- 글수정 폼 시작 -->
 <div class="write-form">
   <form action="/s/post" method="post">
@@ -8,7 +11,7 @@
           <input name="title" type="text" class="form-control" placeholder="Enter title" id="title" value="{{post.title}}">
       </div>
       <div class="mb-3">
-          <textarea name="content" class="form-control" rows="30vh" id="content">{{post.content}}</textarea>
+          <textarea name="content" class="form-control" rows="34vh" id="content" style="resize: none;">{{post.content}}</textarea>
       </div>
       <div class="box-form3">
           <button class="back-btn" type="button" onclick="location.href='/'">나가기</button>
@@ -17,6 +20,9 @@
   </form>
 </div>
 <!-- 글수정 폼 끝 -->
+
+</div>
+<!-- 컨테이너 끝 -->
 
 <script>
   $('#content').summernote({
