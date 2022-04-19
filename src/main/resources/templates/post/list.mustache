@@ -19,10 +19,7 @@
   <!-- 탭 끝 -->
 
     <!-- 게시글 아이템 시작 -->
-  <div class="row row-cols-3 list-form" id="post-box">
-
-
-</div>
+  <div class="row row-cols-3 list-form" id="post-box"></div>
     <!-- 게시글 아이템 끝 -->
 
     <!-- 페이징 시작 -->
@@ -100,20 +97,27 @@
     }
 
     function postItemRender(post) {
-        return `
-    <div class= "col card">
-      <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
+    return `
+    <div class= "col-3 card" style="cursor: pointer;"onclick="location.href='/post/${post.id}';">
+      <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image" >
       <div class="card-body">
-        <h4 class="card-title"> <a href="/post/${post.id}">${post.title}</a></h4>
-        <p class="card-text"> <a href="/post/${post.id}">${post.content}</a></p>
+        <h4 class="card-title">${post.title}</h4>
+        <p class="card-text">${post.content}</p>
         <p>작성일 · 댓글수</p>
         <div class="card-profile">
-          <a href="#" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by suhyeon5028</a>
-   <i id="Like-btn${post.id}" class="far fa-heart m_set_pointer" onclick="like()"></i>
+          <a href="/user/other-blog/${post.user.id}" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by ${post.user.username}</a>
+          <div class="card-profile">
+            <div class="mx-1">
+              count
+            </div>
+            <div class="mx-1">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+          </div>
         </div>        
       </div>
     </div>`;
-    }
+  }
 
     function pagingDisabled(responseParse) {
         if (responseParse.first == true) {
@@ -133,7 +137,5 @@
 </script>
 
 <!-- 컨테이너 끝 -->
-
-
 
 {{> /layout/footer}}

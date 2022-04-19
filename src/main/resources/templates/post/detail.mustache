@@ -2,6 +2,7 @@
 
 <!-- 컨테이너 시작 -->
 <div class="container">
+    <input type="hidden" id="id" value="{{post.id}}">
     <!-- 블로그 제목, 정보 시작-->
     <div class="box-form4">
         <div class="col-sm-6 px-1">
@@ -10,13 +11,11 @@
             </div>
             <div class="box-form3">
                 <div class="blog-flex-start pt-3">
-                    <span class="card-title">{{post.user.username}}</span>
+                    <span class="card-title my-link" onclick="location.href='/user/other-blog/{{post.user.id}}' ">{{post.user.username}}</span>
                     <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-                    <span>날짜</span>
-                    {{#pageOwner}}
+                    <span>{{post.user.createDate}}</span>
                     <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
                     <span class="badge bg-dark"><i class="fa-solid fa-lock" style="color: white;"></i>&nbsp;&nbsp;비공개</span>
-                    {{/pageOwner}}
                 </div>
                 {{#pageOwner}}
                 <div class="blog-flex-end">
@@ -63,7 +62,7 @@
 
             <div class="blog-like-count">100</div>
 
-            <button class="blog-share"><i class="fa-solid fa-paperclip fa-lg"></i></button>
+            <button class="blog-share" onclick="link(); return false;"><i class="fa-solid fa-paperclip fa-lg"></i></button>
 
           </div>
         </div>
@@ -74,7 +73,7 @@
             
             <div class="blog-flex-center">
                 <div class="detail-img">
-                    <img class="detail-img" src="/src/main/resources/static/image/Very_Peri.jpg">
+                    <img src="" alt="">
                     {{{post.content}}}
                 </div>
             </div>
@@ -85,16 +84,15 @@
                       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
                     </div>
                     <div class="mx-2 flex-grow-1">
-
-                        <div class="blog-user">터키로그</div>
-                        <div>터키아이스크림~소개소개~</div>
-                        <div>터키즈</div>
-
+                        <div class="blog-user">{{post.user.blogname}}</div>
+                        <div>{{post.user.blogtitle}}</div>
+                        <div>{{post.user.username}}</div>
                     </div>
                   </div>
                   <hr />
             </div>
 
+            <!-- 이전, 다음포스트 시작 -->
             <div class="box-form3 my-5">
                 <div class="blog-flex-start">
                     <button class="btn"><i class="fa-solid fa-chevron-left"></i>&nbsp;prev</button>
@@ -103,89 +101,58 @@
                     <button class="btn">next&nbsp;<i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
+            <!-- 이전, 다음포스트 끝 -->
+
+            <!-- 댓글작성 시작 -->
             <div class="mt-4">
-                <div class="blog-flex-start">
-                    <div>~개의 댓글</div>
-                </div>
-                <div class="blog-flex-center my-2">
-                    <textarea class="blog-comment" placeholder="댓글을 작성하세요"></textarea>
-                </div>
-                <div class="blog-flex-end mb-3">
-                    <button class="btn">댓글작성</button>
-                </div>
+                <form action="/s/post/{{post.Id}}/comment" method="post">
+                    <div class="blog-flex-start">
+                        <div>~개의 댓글</div>
+                    </div>
+                    <div class="blog-flex-center my-2">
+                        <textarea name="content" class="blog-comment" placeholder="댓글을 작성하세요"></textarea>
+                    </div>
+                    <div class="blog-flex-end mb-3">
+                        <button type="submit" class="btn">댓글작성</button>
+                    </div>
+                </form>
             </div>
+            <!-- 댓글작성 끝 -->
+
+            <!-- 댓글리스트 -->
             <div>
-                <div class="my-3">
-                    <div class="my-3">
-                        <div class="mb-3 blog-flex-start blog-profile">
-                            <div class="col-2 comment-profile-img">
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
-                            </div>
-                            <div class="mx-2 flex-grow-1 comment-profile">
-                                <div class="blog-user">1</div>
-                                <div>작성일</div>
-                            </div>
-                          </div>
-                          <div>
-                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
-                          </div>
-                    </div>
-                    
-                    <hr />
+                <ul id="reply-box" class="list-group">
 
+                    {{#comments}}
                     <div class="my-3">
-                        <div class="mb-3 blog-flex-start blog-profile">
-                            <div class="col-2 comment-profile-img">
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
-                            </div>
-                            <div class="mx-2 flex-grow-1 comment-profile">
-                                <div class="blog-user">2</div>
-                                <div>작성일</div>
-                            </div>
-                          </div>
-                          <div>
-                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
-                          </div>
+                        <div class="my-3">
+                            <div class="mb-3 blog-flex-start blog-profile">
+                                <div class="col-2 comment-profile-img">
+                                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
+                                </div>
+                                <div class="box-form3 flex-grow-1">
+                                    <div class="mx-2 comment-profile">
+                                        <div class="blog-user">{{post.user.username}}</div>
+                                        <div>{{post.user.createDate}}</div>
+                                    </div>
+                                    <div>
+                                        {{#auth}}
+                                        <button class="blog-update-delete" onclick="deleteComment('{{comment.id}}');">삭제</button>
+                                        {{/auth}}
+                                    </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div>{{comment.content}}</div>
+                              </div>
+                        </div>
                     </div>
-                    
                     <hr />
-
-                    <div class="my-3">
-                        <div class="mb-3 blog-flex-start blog-profile">
-                            <div class="col-2 comment-profile-img">
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
-                            </div>
-                            <div class="mx-2 flex-grow-1 comment-profile">
-                                <div class="blog-user">3</div>
-                                <div>작성일</div>
-                            </div>
-                          </div>
-                          <div>
-                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
-                          </div>
-                    </div>
-                    
-                    <hr />
-
-                    <div class="my-3">
-                        <div class="mb-3 blog-flex-start blog-profile">
-                            <div class="col-2 comment-profile-img">
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
-                            </div>
-                            <div class="mx-2 flex-grow-1 comment-profile">
-                                <div class="blog-user">4</div>
-                                <div>작성일</div>
-                            </div>
-                          </div>
-                          <div>
-                            <div>댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~댓글내용~~~</div>
-                          </div>
-                    </div>
-                    
-                    <hr />
-
-                </div>
+                    {{/comments}}
+            
+                </ul>
             </div>
+            <!-- 댓글리스트 -->
 
         </div>
         <!-- 블로그 포스트 끝-->
@@ -220,6 +187,33 @@
         // DELETE, /post/{id}
         deleteById();
     });
+
+    async function deleteComment(commentId) {
+        let response = await fetch(`/s/api/comment/${commentId}`, {
+            method: "DELETE"
+        });
+        let responseParse = await response.json();
+        if (responseParse.code == 1) {
+            alert("삭제 성공");
+            location.reload(); // ajax + ssr
+        } else {
+            alert("삭제 실패");
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function link() {
+        var url = '';
+        var textarea = document.createElement("textarea");
+        document.body.appendChild(textarea);
+        url = window.document.location.href;
+        textarea.value = url;
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        alert("URL이 복사되었습니다.")
+    }
 </script>
 
 {{> /layout/footer}}

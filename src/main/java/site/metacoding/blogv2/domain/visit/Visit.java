@@ -43,5 +43,4 @@ public class Visit {
     private LocalDateTime createDate;
     @LastModifiedDate // update 할때만 동작
     private LocalDateTime updateDate;
-
 }

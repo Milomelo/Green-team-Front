@@ -28,12 +28,12 @@
 
     <!-- 블로그 내 검색 시작-->
     <div class="my-mtb blog-flex-end">
-      <div class="blog-search">
-        <div class="blog-search-input-form" style="margin-top: 12px;">
-          <input id="mykeyword" name="mykeyword" type="text" placeholder="검색어를 입력하세요">
-          <button id="mybtn-search" class="blog-search-icon" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="blog-search">
+          <div class="blog-search-input-form" style="margin-top: 12px;">
+            <input id="mykeyword" name="mykeyword" type="text" placeholder="검색어를 입력하세요">
+            <button id="mybtn-search" class="blog-search-icon" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
         </div>
-      </div>
     </div>
     <!-- 블로그 내 검색 끝-->
 
@@ -43,14 +43,7 @@
       <!-- 블로그 카테고리 시작-->
       <div class="col-sm-3 blog-flex-end">
         <div class="blog-category">
-          <div class="box-form3">
-            <div>
-              &nbsp;&nbsp;&nbsp;카테고리 목록
-            </div>
-            <div>
-              <button class="blog-update-delete" onclick="location.href='/s/category/writeForm' "><i class="fa-solid fa-plus"></i></button>
-            </div>
-          </div>
+          <div>&nbsp;&nbsp;&nbsp;카테고리 목록</div>
           <hr />
           <div>
             <div class="list-group">
@@ -110,50 +103,36 @@
   let page = 0;
   let mykeyword = $("#mykeyword").val(""); // 초기화
   let userId = $("#userId").val();
-
   // 이전버튼 이벤트
   $("#btn-prev").click(() => {
     page--;
     // console.log("현재 페이지 : " + page);
-
     $("#post-box").empty();
     let mykeyword = $("#mykeyword").val(); // 키워드 가지고 가야함
-
     list(mykeyword);
   });
-
   // 다음버튼 이벤트
   $("#btn-next").click(() => {
     page++;
     // console.log("현재 페이지 : " + page);
-
     $("#post-box").empty();
     let mykeyword = $("#mykeyword").val();
-
     list(mykeyword);
   });
-
   // 검색버튼 이벤트
   $("#mybtn-search").click(() => {
     page = 0; // 페이지 초기화 검색한 페이지가 0번!
-
     mykeyword = $("#mykeyword").val();
     $("#post-box").empty();
-
     list(mykeyword);
   });
-
   async function list(mykeyword) {
-
     let response = await fetch(`/api/${userId}/list?page=${page}&mykeyword=${mykeyword}`);
     let responseParse = await response.json();
-
     console.log(responseParse);
     console.log(responseParse.first);
-
     if (response.status === 200) {
       pagingDisabled(responseParse);
-
       responseParse.content.forEach((post) => {
         $("#post-box").append(postItemRender(post));
       });
@@ -161,9 +140,8 @@
       alert("잘못된 요청입니다.");
     }
   }
-
   function postItemRender(post) {
-    return `<div class="my-mb blog-flex-center">
+    return `<div class="my-mb blog-flex-center"  style="cursor: pointer;" onclick="location.href='/post/${post.id}';">
             <div class="blog-card">
                 <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
                     <div class="card-body">
@@ -173,10 +151,7 @@
                     </div>
             </div>
         </div>`;
-
-
   }
-
   function pagingDisabled(responseParse) {
     if (responseParse.first == true) {
       $("#li-prev").addClass("disabled");
@@ -189,8 +164,6 @@
       $("#li-next").removeClass("disabled");
     }
   }
-
   list("");
-
 </script>
 {{> /layout/footer}}

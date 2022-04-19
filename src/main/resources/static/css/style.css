@@ -482,9 +482,12 @@ body{
 }
 .blog-category {
   width: 150px;
-} 
+}
+.category-list {
+  padding: 0;
+  margin: 0;
+}
 .list-group-item{
-  height: 25px;
   font-size: medium;
   border: none;
   background: none;
