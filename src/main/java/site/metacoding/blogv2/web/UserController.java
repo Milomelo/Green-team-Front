@@ -28,10 +28,6 @@ public class UserController {
     private final PostService postService;
 
     // 메인
-    @GetMapping("/")
-    public String mainForm() {
-        return "/post/list";
-    }
 
     // 로그인
     @GetMapping("/login-form")
@@ -41,7 +37,6 @@ public class UserController {
             Cookie[] cookies = request.getCookies();
 
             for (Cookie cookie : cookies) {
-                System.out.println("쿠키값 : " + cookie.getName());
                 if (cookie.getName().equals("remember")) {
                     model.addAttribute("remember", cookie.getValue());
                 }
@@ -78,7 +73,6 @@ public class UserController {
     // 회원가입
     @GetMapping("/join-form")
     public String joinForm() {
-
         return "/user/joinForm";
     }
 
@@ -95,7 +89,6 @@ public class UserController {
         }
 
         userService.회원가입(user);
-
         return "redirect:/login-form"; // 로그인페이지 이동해주는 컨트롤러 메서드를 재활용
     }
 
@@ -103,7 +96,6 @@ public class UserController {
     public String updateForm(@PathVariable Integer id, Model model) {
         User userEntity = userService.회원정보(id);
         model.addAttribute("user", userEntity);
-        System.out.println(userEntity);
         return "/user/updateForm";
     }
 
@@ -115,7 +107,6 @@ public class UserController {
         // 카테고리연결
         PostRespDto postRespDto = postService.게시글목록보기(userId);
         model.addAttribute("postRespDto", postRespDto);
-
         model.addAttribute("user", userEntity);
         return "/user/myBlog";
     }

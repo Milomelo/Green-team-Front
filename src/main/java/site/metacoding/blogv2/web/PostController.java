@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.blogv2.domain.category.Category;
+import site.metacoding.blogv2.domain.category.CategoryRepository;
 import site.metacoding.blogv2.domain.comment.Comment;
 import site.metacoding.blogv2.domain.post.Post;
 import site.metacoding.blogv2.domain.user.User;
@@ -27,11 +29,35 @@ import site.metacoding.blogv2.web.Dto.ResponseDto;
 @RequiredArgsConstructor
 @Controller
 public class PostController {
+
+    private final CategoryRepository categoryRepository;
     private final HttpSession session;
     private final PostService postService;
 
-    @GetMapping("/s/post/write-form")
-    public String postForm() {
+    @GetMapping("/")
+    public String mainForm(Model model) {
+
+        return "/post/list";
+    }
+
+    // 글쓰기
+    @GetMapping("/s/post/{id}/write-form")
+    public String postForm(Model model, @PathVariable Integer id) {
+
+        User pri = (User) session.getAttribute("principal");
+        List<Category> categorys = categoryRepository.findByUserId(id);
+        System.out.println("================카테고리입니다" + categorys);
+        if (pri.getId() == id) {
+
+            // for (int i = 0; i < categorys.size(); i++) {
+
+            // System.out.println(categorys.get(i).getTitle());
+
+            // }
+
+            model.addAttribute("categorys", categorys);
+        }
+
         return "/post/writeForm";
     }
 
@@ -39,13 +65,15 @@ public class PostController {
     public String write(Post post) {
 
         if (session.getAttribute("principal") == null) {
-            System.out.println("세션 없음");
             return "redirect:/login-form";
+        }
+        if (post.getSecret() == null) {
+            post.setSecret("0");
+
         }
 
         User principal = (User) session.getAttribute("principal");
         postService.글쓰기(post, principal);
-        System.out.println("글쓰기 성공");
         return "redirect:/";
     }
 
@@ -55,20 +83,6 @@ public class PostController {
         User principal = (User) session.getAttribute("principal");
 
         Post postEntity = postService.글상세보기(id);
-
-        // 게시물이 없으면 error 페이지 이동
-        if (postEntity == null) {
-            return "error/page1";
-        }
-
-        if (principal != null) {
-            // 권한 확인해서 view로 값을 넘김.
-            if (principal.getId() == postEntity.getUser().getId()) { // 권한 있음
-                model.addAttribute("pageOwner", true);
-            } else {
-                model.addAttribute("pagrOwner", false);
-            }
-        }
 
         String rawContent = postEntity.getContent();
         String encContent = rawContent
@@ -92,10 +106,42 @@ public class PostController {
             } else {
                 dto.setAuth(false); // or false
             }
+
             comments.add(dto);
         }
+        if (principal != null) {
+
+            if (principal.getId() == postEntity.getUser().getId()) {
+
+                if (postEntity.getSecret().equals("1")) {
+
+                    model.addAttribute("secret", false);
+
+                } else {
+
+                    model.addAttribute("all", true);
+
+                }
+
+            }
+
+        } else {
+
+            if (postEntity.getSecret().equals("1")) {
+
+                model.addAttribute("secret", true);
+
+            } else {
+
+                model.addAttribute("all", true);
+
+            }
+
+        }
+
         model.addAttribute("comments", comments);
         model.addAttribute("post", postEntity);
+
         return "/post/detail";
     }
 

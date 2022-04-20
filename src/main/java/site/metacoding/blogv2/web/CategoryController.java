@@ -31,7 +31,7 @@ public class CategoryController {
     }
 
     @PostMapping("/s/category")
-    public @ResponseBody String write(CategoryWriteReqDto categoryWriteReqDto,
+    public String write(CategoryWriteReqDto categoryWriteReqDto,
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

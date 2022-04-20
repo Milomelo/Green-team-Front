@@ -14,6 +14,7 @@ import site.metacoding.blogv2.domain.category.CategoryRepository;
 import site.metacoding.blogv2.domain.post.Post;
 import site.metacoding.blogv2.domain.post.PostRepository;
 import site.metacoding.blogv2.domain.user.User;
+import site.metacoding.blogv2.domain.user.UserRepository;
 import site.metacoding.blogv2.web.Dto.PostRespDto;
 
 @RequiredArgsConstructor
@@ -21,12 +22,18 @@ import site.metacoding.blogv2.web.Dto.PostRespDto;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
 
     @Transactional
     public void 글쓰기(Post post, User principal) {
         post.setUser(principal); // User FK 추가!!
         postRepository.save(post);
+    }
+
+    public List<Category> 게시글쓰기화면(Integer userId) {
+        return categoryRepository.findByUserId(userId);
+        // return categoryRepository.findAll();
     }
 
     public Page<Post> 글목록보기(String keyword, Pageable pageable) {
@@ -52,6 +59,12 @@ public class PostService {
         }
     }
 
+    public List<Post> 모든글목록() {
+
+        return postRepository.findAll();
+
+    }
+
     @Transactional
     public void 글삭제하기(Integer id) {
         postRepository.deleteById(id); // 실패했을 때 내부적으로 exception 터짐
@@ -70,6 +83,10 @@ public class PostService {
 
     public Page<Post> 유저글목록보기(Integer userId, String mykeyword, Pageable pageable) {
         return postRepository.mfindByUserID(userId, mykeyword, pageable);
+    }
+
+    public Page<Post> 다른유저글목록보기(Integer userId, String mykeyword, Pageable pageable) {
+        return postRepository.mfindOtherByUserID(userId, mykeyword, pageable);
     }
 
 }

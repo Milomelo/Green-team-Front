@@ -127,7 +127,7 @@
     list(mykeyword);
   });
   async function list(mykeyword) {
-    let response = await fetch(`/api/${userId}/list?page=${page}&mykeyword=${mykeyword}`);
+    let response = await fetch(`/api/${userId}/otherlist?page=${page}&mykeyword=${mykeyword}`);
     let responseParse = await response.json();
     console.log(responseParse);
     console.log(responseParse.first);
@@ -141,14 +141,15 @@
     }
   }
   function postItemRender(post) {
-    return `<div class="my-mb blog-flex-center"  style="cursor: pointer;" onclick="location.href='/post/${post.id}';">
-            <div class="blog-card">
+    return `
+        <div class="my-mb blog-flex-center">
+            <div class="blog-card" onclick="location.href='/post/${post.id}';">
                 <img class="card-img-top" src="/image/Very_Peri.jpg" alt="Card image">
-                    <div class="card-body">
-                        <h4 class="card-title" ><a href="/post/${post.id}"> ${post.title}</h4>
-                        <p class="card-text">${post.content}</p>
-                        <p>작성일 · 댓글수</p>
-                    </div>
+                <div class="card-body">
+                    <h4 class="card-title" >${post.title}</h4>
+                    <p class="card-text">${post.content}</p>
+                    <p>${post.createDate} · 댓글수</p>
+                </div>
             </div>
         </div>`;
   }

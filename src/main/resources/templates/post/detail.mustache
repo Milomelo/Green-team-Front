@@ -16,17 +16,15 @@
                 <div class="blog-flex-start pt-3">
                     <span class="card-title my-link" onclick="location.href='/user/other-blog/{{post.user.id}}' ">{{post.user.username}}</span>
                     <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-                    <span>{{post.user.createDate}}</span>
+                    <span>{{post.createDate}}</span>
                     <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
                     <span class="badge bg-dark"><i class="fa-solid fa-lock" style="color: white;"></i>&nbsp;&nbsp;비공개</span>
                 </div>
-                {{#pageOwner}}
                 <div class="blog-flex-end">
                     <button class="blog-update-delete" onclick="location.href='/s/post/{{post.id}}/updateForm' ">수정</button>
                     <!-- Button to Open the Modal -->
                     <button class="blog-update-delete" data-bs-toggle="modal" data-bs-target="#myModal">삭제</button>
                 </div>
-                {{/pageOwner}}
             </div>
         </div>
     </div>
@@ -87,7 +85,7 @@
                       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUZ_9tEpmdSFXY_yLnlAe6qR4yZ8Czl2mvw&usqp=CAU" alt="Profile" class="rounded-circle profile">
                     </div>
                     <div class="mx-2 flex-grow-1">
-                        <div class="blog-user">{{post.user.blogname}}</div>
+                        <div class="blog-user" onclick="location.href='/user/other-blog/{{post.user.id}}' ">{{post.user.blogname}}</div>
                         <div>{{post.user.blogtitle}}</div>
                         <div>{{post.user.username}}</div>
                     </div>
@@ -98,10 +96,10 @@
             <!-- 이전, 다음포스트 시작 -->
             <div class="box-form3 my-5">
                 <div class="blog-flex-start">
-                    <button class="btn"><i class="fa-solid fa-chevron-left"></i>&nbsp;prev</button>
+                    <button class="btn" id="btn-prev"><i class="fa-solid fa-chevron-left"></i>&nbsp;prev</button>
                 </div>
                 <div class="blog-flex-end">
-                    <button class="btn">next&nbsp;<i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="btn" id="btn-next">next&nbsp;<i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
             <!-- 이전, 다음포스트 끝 -->

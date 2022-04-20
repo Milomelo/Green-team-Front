@@ -1,5 +1,6 @@
 package site.metacoding.blogv2.domain.comment;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -40,6 +41,6 @@ public class Comment {
     private User user;
 
     @CreatedDate // insert
-    private LocalDateTime createDate;
+    private LocalDate createDate;
 
 }

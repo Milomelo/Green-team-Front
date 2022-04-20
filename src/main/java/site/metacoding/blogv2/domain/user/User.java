@@ -1,7 +1,7 @@
 package site.metacoding.blogv2.domain.user;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +47,7 @@ public class User {
     private String blogtitle;
 
     @CreatedDate // insert 할때만 동작
-    private LocalDateTime createDate;
+    private LocalDate createDate;
     @LastModifiedDate // update 할때만 동작
     private LocalDateTime updateDate;
 

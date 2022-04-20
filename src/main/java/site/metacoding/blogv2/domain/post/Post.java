@@ -1,5 +1,6 @@
 package site.metacoding.blogv2.domain.post;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -70,8 +71,10 @@ public class Post {
     @ManyToOne
     private Category category;
 
+    private String secret;
+
     @CreatedDate // insert 할때만 동작
-    private LocalDateTime createDate;
+    private LocalDate createDate;
     @LastModifiedDate // update 할때만 동작
     private LocalDateTime updateDate;
 
