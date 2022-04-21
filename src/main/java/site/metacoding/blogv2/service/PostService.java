@@ -3,6 +3,7 @@ package site.metacoding.blogv2.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,9 @@ import site.metacoding.blogv2.domain.post.Post;
 import site.metacoding.blogv2.domain.post.PostRepository;
 import site.metacoding.blogv2.domain.user.User;
 import site.metacoding.blogv2.domain.user.UserRepository;
+import site.metacoding.blogv2.domain.util.UtilFileUpload;
 import site.metacoding.blogv2.web.Dto.PostRespDto;
+import site.metacoding.blogv2.web.Dto.PostWriteReqDto;
 
 @RequiredArgsConstructor
 @Service
@@ -25,10 +28,34 @@ public class PostService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
 
+    @Value("${file.path}")
+    private String uploadFolder;
+
     @Transactional
-    public void 글쓰기(Post post, User principal) {
+    public void 글쓰기(Post post, User principal, PostWriteReqDto postWriteReqDto) {
+
+        String thumnail = null;
+        if (postWriteReqDto.getThumnailFile().isEmpty()) {
+            thumnail = "1.png";
+
+        }
+        if (!postWriteReqDto.getThumnailFile().isEmpty()) {
+            thumnail = UtilFileUpload.write(uploadFolder, postWriteReqDto.getThumnailFile());
+        }
+
+        // 2. 카테고리 있는지 확인
+        Optional<Category> categoryOp = categoryRepository.findById(postWriteReqDto.getCategoryId());
+        if (postWriteReqDto.getSecret() == null) {
+            postWriteReqDto.setSecret("0");
+        }
+        // 3. post DB 저장
+        if (categoryOp.isPresent()) {
+            Post posts = postWriteReqDto.toEntity(thumnail, principal, categoryOp.get());
+            postRepository.save(posts);
+        } else {
+
+        }
         post.setUser(principal); // User FK 추가!!
-        postRepository.save(post);
     }
 
     public List<Category> 게시글쓰기화면(Integer userId) {
@@ -40,11 +67,21 @@ public class PostService {
         return postRepository.findByTitleContaining(keyword, pageable);
     }
 
-    public PostRespDto 게시글목록보기(int userId) {
+    public PostRespDto 게시글목록보기(Integer userId) {
         List<Post> postsEntity = postRepository.findByUserId(userId);
         List<Category> categorysEntity = categoryRepository.findByUserId(userId);
 
         PostRespDto postRespDto = new PostRespDto(postsEntity, categorysEntity);
+        return postRespDto;
+    }
+
+    public PostRespDto 게시글카테고리별보기(Integer userId, Integer categoryId) {
+        List<Post> postsEntity = postRepository.findByUserIdAndCategoryId(userId, categoryId);
+        List<Category> categorysEntity = categoryRepository.findByUserId(userId);
+
+        PostRespDto postRespDto = new PostRespDto(
+                postsEntity,
+                categorysEntity);
         return postRespDto;
     }
 

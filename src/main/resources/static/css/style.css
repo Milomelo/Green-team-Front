@@ -37,6 +37,10 @@ body{
   align-items: center;
 }
 
+.my_hidden {
+  display: none;
+}
+
 /* 네비바 */
 .navbar {
   background-color: rgb(248, 248, 248);
@@ -60,63 +64,6 @@ body{
 }
 /* 네비바 */
 
-/* 인기순,최신순 */
-.active-tab{
-  padding: 10px;
-  text-decoration: none;
-}
-.tabbable-line > .nav-tabs {
-  border: none;
-  margin: 0px;
-}
-.tabbable-line > .nav-tabs > li {
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-.tabbable-line > .nav-tabs > li > a {
-  font-size: x-large;
-  font-weight: bold;
-  border: 0;
-  margin-right: 0;
-  color: #6667ab;
-}
-.tabbable-line > .nav-tabs > li > a > i {
-  color: #6667ab;
-}
-.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
-  border-bottom: 4px solid #6667ab;
-}
-.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
-  border: 0;
-  background: none !important;
-  color: #6667ab;
-}
-.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
-  color: #6667ab;
-}
-.tabbable-line > .nav-tabs > li.active {
-  border-bottom: 4px solid #6667ab;
-  position: relative;
-}
-.tabbable-line > .nav-tabs > li.active > a {
-  border: 0;
-  color: #6667ab;
-}
-.tabbable-line > .nav-tabs > li.active > a > i {
-  color: #6667ab;
-}
-.tabbable-line > .tab-content {
-  margin-top: -3px;
-  background-color: #fff;
-  border: 0;
-  border-top: 1px solid #eee;
-  padding: 15px 0;
-}
-.portlet .tabbable-line > .tab-content {
-  padding-bottom: 0;
-}
-/* 인기순,최신순 */
-
 /* 카드포스트 */
 .card{
   width: 31%;
@@ -129,8 +76,24 @@ body{
 .card:hover, .card:active {
   box-shadow: 0px 0px 10px 2px #6667ab;
 }
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  margin-left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position:absolute;
+}
 .card-img{
   border: 0;
+  display: inline-block;
+  width: 100%;
+  height: 220px;
+  overflow:hidden;
+  object-fit: cover;
+  position:relative;
 }
 .card-link{
   font-size: small;
@@ -146,9 +109,6 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.likey{
-  line-height: 0px;
 }
 /* 카드포스트 */
 
@@ -265,49 +225,7 @@ body{
   border: 0;
   border-radius: 20px;
 }
-.blog-like{
-  width: 43px;
-  height: 43px;
-  padding-top: 8px;
-  color: #868e96;
-  background-color: white;
-  border: 2px solid #dee2e6;
-  border-radius: 25px;
-  margin: 6px 4px;
-  display: block;
-}
-.blog-like:hover {
-  border: 2px solid black;
-  outline: none;
-  color: black;
-  background-color: white;
-  box-shadow: none;
-}
-.blog-like:focus {
-  border: none;
-  outline: none;
-  color: white;
-  background-color: #6667ab;
-  box-shadow: none;
-}
-.blog-share{
-  width: 43px;
-  height: 43px;
-  padding-top: 8px;
-  color: #868e96;
-  background-color: white;
-  border: 2px solid #dee2e6;
-  border-radius: 25px;
-  margin: 6px 4px;
-  display: block;
-}
-.blog-share:hover, .blog-share:active {
-  border: 2px solid black;
-  outline: none;
-  color: black;
-  background-color: white;
-  box-shadow: none;
-}
+
 .blog-update-delete {
   border: none;
   outline: none;
@@ -501,6 +419,24 @@ font-size: medium;
 .blog-card{
   background-color: white;
   width: 100%;
+
+}
+.blog-card-img{
+  display: inline-block;
+  width: 100%;
+  height: 340px;
+  overflow:hidden;
+  object-fit: cover;
+  position:relative;
+}
+.blog-card-img-top{
+  width: 100%;
+  height: auto;
+  margin-left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position:absolute;
 }
 .blog-category {
   width: 150px;
@@ -545,20 +481,6 @@ font-size: medium;
 }
 
 /* 포스트 디테일 */
-.like-form{
-  width: 55px;
-  height: 130px;
-  border: 2px solid #f1f3f5;
-  border-radius: 30px;
-  background-color: #f8f9fa;
-}
-.blog-like-count{
-  font-size: xx-small;
-  border: 0;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
 .detail-img{
   width: 100%;
   height: 100%;

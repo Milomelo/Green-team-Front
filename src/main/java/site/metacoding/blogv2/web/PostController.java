@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.blogv2.domain.category.Category;
@@ -24,6 +25,7 @@ import site.metacoding.blogv2.domain.user.User;
 import site.metacoding.blogv2.service.PostService;
 
 import site.metacoding.blogv2.web.Dto.CommentResponseDto;
+import site.metacoding.blogv2.web.Dto.PostWriteReqDto;
 import site.metacoding.blogv2.web.Dto.ResponseDto;
 
 @RequiredArgsConstructor
@@ -42,11 +44,12 @@ public class PostController {
 
     // 글쓰기
     @GetMapping("/s/post/{id}/write-form")
-    public String postForm(Model model, @PathVariable Integer id) {
+    public String postForm(Model model, @PathVariable Integer id, PostWriteReqDto postWriteReqDto) {
 
         User pri = (User) session.getAttribute("principal");
         List<Category> categorys = categoryRepository.findByUserId(id);
         System.out.println("================카테고리입니다" + categorys);
+
         if (pri.getId() == id) {
 
             // for (int i = 0; i < categorys.size(); i++) {
@@ -62,18 +65,14 @@ public class PostController {
     }
 
     @PostMapping("/s/post")
-    public String write(Post post) {
+    public String write(Post post, PostWriteReqDto postWriteReqDto, MultipartFile file) {
 
         if (session.getAttribute("principal") == null) {
             return "redirect:/login-form";
         }
-        if (post.getSecret() == null) {
-            post.setSecret("0");
-
-        }
 
         User principal = (User) session.getAttribute("principal");
-        postService.글쓰기(post, principal);
+        postService.글쓰기(post, principal, postWriteReqDto);
         return "redirect:/";
     }
 
@@ -109,33 +108,24 @@ public class PostController {
 
             comments.add(dto);
         }
+
+        if (postEntity.getSecret().equals("1")) {
+            model.addAttribute("secret", true);
+
+        } else {
+            model.addAttribute("secret", false);
+
+        }
+
         if (principal != null) {
 
             if (principal.getId() == postEntity.getUser().getId()) {
-
-                if (postEntity.getSecret().equals("1")) {
-
-                    model.addAttribute("secret", false);
-
-                } else {
-
-                    model.addAttribute("all", true);
-
-                }
-
-            }
-
-        } else {
-
-            if (postEntity.getSecret().equals("1")) {
-
-                model.addAttribute("secret", true);
-
+                model.addAttribute("pageOwner", true);
             } else {
-
-                model.addAttribute("all", true);
-
+                model.addAttribute("pageOwner", false);
             }
+        } else {
+            model.addAttribute("pageOwner", false);
 
         }
 
