@@ -77,6 +77,16 @@ body{
   box-shadow: 0px 0px 10px 2px #6667ab;
 }
 
+.card-img{
+  border: 0;
+  display: inline-block;
+  width: 100%;
+  height: 0;
+  padding-top: 56%;
+  overflow:hidden;
+  object-fit: cover;
+  position:relative;
+}
 .card-img-top {
   width: 100%;
   height: auto;
@@ -85,15 +95,6 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   position:absolute;
-}
-.card-img{
-  border: 0;
-  display: inline-block;
-  width: 100%;
-  height: 220px;
-  overflow:hidden;
-  object-fit: cover;
-  position:relative;
 }
 .card-link{
   font-size: small;
@@ -424,7 +425,8 @@ font-size: medium;
 .blog-card-img{
   display: inline-block;
   width: 100%;
-  height: 340px;
+  height: 0;
+  padding-top: 56%;
   overflow:hidden;
   object-fit: cover;
   position:relative;

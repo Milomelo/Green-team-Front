@@ -2,21 +2,36 @@ package site.metacoding.blogv2.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.blogv2.domain.user.User;
 import site.metacoding.blogv2.domain.user.UserRepository;
+import site.metacoding.blogv2.domain.util.UtilFileUpload;
+import site.metacoding.blogv2.web.Dto.JoindDto;
 import site.metacoding.blogv2.web.Dto.UpdateDto;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
+    @Value("${profilePath.path}")
+    private String uploadFolder;
     private final UserRepository userRepository;
 
     @Transactional
-    public void 회원가입(User user) {
+    public void 회원가입(JoindDto joindDto) {
+
+        String profile = null;
+        if (joindDto.getProfilefFile().isEmpty()) {
+            profile = "coomon.jpg";
+
+        }
+        if (!joindDto.getProfilefFile().isEmpty()) {
+            profile = UtilFileUpload.write(uploadFolder, joindDto.getProfilefFile());
+        }
+        User user = joindDto.toEntity(profile);
 
         userRepository.save(user);
     }

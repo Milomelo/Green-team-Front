@@ -28,7 +28,7 @@ public class PostService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
 
-    @Value("${file.path}")
+    @Value("${thumnailfile.path}")
     private String uploadFolder;
 
     @Transactional

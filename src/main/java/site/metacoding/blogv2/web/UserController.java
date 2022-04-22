@@ -17,6 +17,7 @@ import site.metacoding.blogv2.domain.user.User;
 import site.metacoding.blogv2.domain.user.UserRepository;
 import site.metacoding.blogv2.service.PostService;
 import site.metacoding.blogv2.service.UserService;
+import site.metacoding.blogv2.web.Dto.JoindDto;
 import site.metacoding.blogv2.web.Dto.PostRespDto;
 
 @RequiredArgsConstructor
@@ -73,11 +74,12 @@ public class UserController {
     // 회원가입
     @GetMapping("/join-form")
     public String joinForm() {
+
         return "/user/joinForm";
     }
 
     @PostMapping("/join")
-    public String join(User user) {
+    public String join(User user, JoindDto joindDto) {
 
         // 필터의 역할
         // 1. username, password, email 1.null체크, 2.공백체크
@@ -87,8 +89,9 @@ public class UserController {
         if (user.getUsername().equals("") || user.getPassword().equals("") || user.getEmail().equals("")) {
             return "redirect:/join-form";
         }
+        System.out.println("==============================조인");
+        userService.회원가입(joindDto);
 
-        userService.회원가입(user);
         return "redirect:/login-form"; // 로그인페이지 이동해주는 컨트롤러 메서드를 재활용
     }
 
@@ -108,7 +111,9 @@ public class UserController {
         PostRespDto postRespDto = postService.게시글목록보기(userId);
         model.addAttribute("postRespDto", postRespDto);
         model.addAttribute("user", userEntity);
+
         return "/user/myBlog";
+
     }
 
     @GetMapping("/user/blog/{userId}")
@@ -125,6 +130,7 @@ public class UserController {
         User userEntity = userService.회원아이디불러오기(userId);
         // 카테고리연결
         PostRespDto postRespDto = postService.게시글목록보기(userId);
+
         model.addAttribute("postRespDto", postRespDto);
         model.addAttribute("user", userEntity);
         return "/user/otherBlog";
