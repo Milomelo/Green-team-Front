@@ -12,7 +12,7 @@
       <div class="col-sm-6">
         <div class="blog-flex-start blog-profile">
           <div class="my-mlr blog-profile-img">
-            <img src="/green/profile/{{profile}}" alt="Profile" class="rounded-circle profile">
+            <img src="/green/profile/{{profile}}" alt="Profile" class="rounded-circle profile-img-box">
           </div>
           <div class="my-mlr">
             <div class="blog-user">{{blogname}}</div>
@@ -86,15 +86,6 @@
     <!-- 페이징 시작 -->
     <ul class="pagination modal-3">
       <li><a href="#" class="prev"><i class="fa fa-chevron-left"></i></a></li>
-      <li><a href="#" class="active">1</a></li>
-      <li> <a href="#">2</a></li>
-      <li> <a href="#">3</a></li>
-      <li> <a href="#">4</a></li>
-      <li> <a href="#">5</a></li>
-      <li> <a href="#">6</a></li>
-      <li> <a href="#">7</a></li>
-      <li> <a href="#">8</a></li>
-      <li> <a href="#">9</a></li>
       <li><a href="#" class="next"><i class="fa fa-chevron-right"></i></a></li>
     </ul>
     <!-- 페이징 끝 -->
@@ -167,7 +158,7 @@
         <div class="my-mb blog-flex-center">
             <div class="blog-card" onclick="location.href='/post/${post.id}';">
               <div class="blog-card-img">
-                <img class="blog-card-img-top" src="/upload/${post.thumnail}">
+                <img class="blog-card-img-top" src="/green/upload/${post.thumnail}">
               </div>
               <div class="card-body">
                 <h4 class="card-title" >${post.title}</h4>

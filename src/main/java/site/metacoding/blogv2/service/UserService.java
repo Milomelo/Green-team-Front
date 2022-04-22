@@ -25,7 +25,7 @@ public class UserService {
 
         String profile = null;
         if (joindDto.getProfilefFile().isEmpty()) {
-            profile = "coomon.jpg";
+            profile = "geulhada.jpg";
 
         }
         if (!joindDto.getProfilefFile().isEmpty()) {

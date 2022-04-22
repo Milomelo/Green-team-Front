@@ -10,25 +10,11 @@
     <!-- 페이징 시작 -->
     <ul class="pagination modal-3">
       <li><a href="#" class="prev"><i class="fa fa-chevron-left"></i></a></li>
-      <li><a href="#" class="active">1</a></li>
-      <li> <a href="#">2</a></li>
-      <li> <a href="#">3</a></li>
-      <li> <a href="#">4</a></li>
-      <li> <a href="#">5</a></li>
-      <li> <a href="#">6</a></li>
-      <li> <a href="#">7</a></li>
-      <li> <a href="#">8</a></li>
-      <li> <a href="#">9</a></li>
       <li><a href="#" class="next"><i class="fa fa-chevron-right"></i></a></li>
     </ul>
     <!-- 페이징 끝 -->
 
 </div>
-
-
-
-
-
 
 <script>
     let page = 0;
@@ -97,7 +83,7 @@
         <p class="card-text">${post.content}</p>
         <p>${post.formatCreateDate} · ${post.comments.length}개의 댓글</p>
         <div class="card-profile">
-          <a href="/user/other-blog/${post.user.id}" class="card-link my-link"><img src="/image/coomon.jpg" class="rounded-circle card-img-profile" alt="Card image"> by ${post.user.username}</a>
+          <a href="/user/other-blog/${post.user.id}" class="card-link my-link"><img src="/green/profile/${post.user.profile}" class="rounded-circle card-img-profile" alt="Card image"> by ${post.user.username}</a>
         </div>        
       </div>
     </div>`;

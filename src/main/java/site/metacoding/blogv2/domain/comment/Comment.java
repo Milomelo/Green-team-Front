@@ -1,6 +1,7 @@
 package site.metacoding.blogv2.domain.comment;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -39,6 +40,12 @@ public class Comment {
     @ManyToOne
     private User user;
 
-    @CreatedDate // insert
+    @CreatedDate // insert 할때만 동작
     private LocalDateTime createDate;
+
+    // yyyy-MM-dd HH:mm:ss
+    public String getFormatCreateDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return createDate.format(formatter);
+    }
 }

@@ -36,7 +36,7 @@ public class PostService {
 
         String thumnail = null;
         if (postWriteReqDto.getThumnailFile().isEmpty()) {
-            thumnail = "1.png";
+            thumnail = "geulhada.jpg";
 
         }
         if (!postWriteReqDto.getThumnailFile().isEmpty()) {

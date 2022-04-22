@@ -55,11 +55,15 @@ body{
 }
 
 .profile-img {
-  width: 80px;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
 } 
 .profile {
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  display: inline-block;
   object-fit: cover;
 }
 /* 네비바 */
@@ -105,6 +109,9 @@ body{
 }
 .card-img-profile{
   width: 30px;
+  height: 30px;
+  display: inline-block;
+  object-fit: cover;
 }
 .card-profile{
   display: flex;
@@ -217,10 +224,10 @@ body{
   border-radius: 5px;
 }
 .image-upload-btn{
-  width: 160px;
+  width: 100%;
   height: 40px;
   padding-top: 10px;
-  padding-left: 35px;
+  padding-left: 62px;
   color: white;
   background-color: #6667ab;
   border: 0;
@@ -357,6 +364,14 @@ font-size: medium;
   text-decoration: none;
 }
 
+/* 유저수정 */
+.user-update-img{
+  width: 160px;
+  height: 160px;
+  display: inline-block;
+  object-fit: cover;
+}
+
 /* 내블로그 */
 .blog-flex-around {
   display: flex;
@@ -381,6 +396,12 @@ font-size: medium;
 .blog-profile-img {
   width: 120px;
 } 
+.profile-img-box {
+  width: 110px;
+  height: 110px;
+  display: inline-block;
+  object-fit: cover;
+}
 .blog-profile {
   align-items: center;
 }
@@ -522,6 +543,12 @@ font-size: medium;
 /* 댓글 */
 .comment-profile-img {
   width: 60px;
+}
+.comment-img-box {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  object-fit: cover;
 }
 .comment-profile {
   font-size: small;

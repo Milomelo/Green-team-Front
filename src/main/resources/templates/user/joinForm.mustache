@@ -24,10 +24,12 @@
         </div>
         <input type="hidden" class="form-control input-form" placeholder="Blogtitle" name="blogtitle"
             id="blogtitle" maxlength="100" required />
+        <div class="image-upload-btn" onclick="onclick=document.all.profile.click()">프로필 사진 선택 (회원가입 후 변경 불가)
+            <input type="file" name="profilefFile" id="profile" placeholder="Choose file" style="display:none">
+        </div>
 
         <div class="box-form3 my-3">
             <button type="button" class="cancel-btn" onclick="location.href='/login-form'">나가기</button>
-            <input type="file" name="profilefFile" id="profile" placeholder="Choose file">
             <button type="submit" class="submit-btn">회원가입</button>
         </div>
     </form>
