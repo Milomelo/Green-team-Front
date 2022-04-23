@@ -50,7 +50,7 @@
               <ul class="category-list" style="list-style: none; float: left;">
                 {{#postRespDto.categorys}}
                 <li>
-                  <a class="list-group-item list-group-item-action" href="/user/{{user.id}}/post?categoryId={{id}}">{{title}}</a>
+                  <a class="list-group-item list-group-item-action" href="/user/{{user.id}}/category/{{id}}">{{title}}</a></li>
                 </li>
                 {{/postRespDto.categorys}}
               </ul>
@@ -78,8 +78,8 @@
 
     <!-- 페이징 시작 -->
     <ul class="pagination modal-3">
-      <li><a href="#" class="prev"><i class="fa fa-chevron-left"></i></a></li>
-      <li><a href="#" class="next"><i class="fa fa-chevron-right"></i></a></li>
+      <li><a href="#" class="prev" id="btn-prev"><i class="fa fa-chevron-left"></i></a></li>
+      <li><a href="#" class="next" id ="btn-next"><i class="fa fa-chevron-right"></i></a></li>
     </ul>
     <!-- 페이징 끝 -->
 

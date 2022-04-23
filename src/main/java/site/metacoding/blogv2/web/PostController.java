@@ -42,6 +42,12 @@ public class PostController {
         return "/post/list";
     }
 
+    @GetMapping("/test")
+    public String test() {
+
+        return "/post/test";
+    }
+
     // 글쓰기
     @GetMapping("/s/post/{id}/write-form")
     public String postForm(Model model, @PathVariable Integer id, PostWriteReqDto postWriteReqDto) {
@@ -84,9 +90,7 @@ public class PostController {
         Post postEntity = postService.글상세보기(id);
 
         String rawContent = postEntity.getContent();
-        String encContent = rawContent
-                .replaceAll("<script>", "&lt;script&gt;")
-                .replaceAll("</script>", "&lt;script/&gt;");
+        String encContent = rawContent;
         postEntity.setContent(encContent);
 
         List<CommentResponseDto> comments = new ArrayList<>();
@@ -168,7 +172,8 @@ public class PostController {
         if (postEntity.getUser().getId() != principal.getId()) {
             return "error/page1";
         }
-
+        System.out.println("============================" + postEntity.getContent() + "============================");
+        System.out.println("============================" + postEntity + "============================");
         model.addAttribute("post", postEntity);
 
         return "post/updateForm"; // ViewResolver 도움 받음.

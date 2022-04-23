@@ -9,7 +9,7 @@
     <input type="hidden" id="id" value="{{post.id}}">
 
       <div class="mb-3 mt-3">
-          <input name="title" type="text" class="form-control write-title-form" placeholder="Enter title" id="title" value="{{post.title}}">
+          <input name="title" type="text" class="form-control write-title-form" placeholder="Enter title" id="title" value="{{{post.title}}}">
       </div>
 
       <div class="box-form3">
@@ -71,8 +71,7 @@
     </div>
     <!-- 툴바 끝 -->
 
-    <div id="editor-container" style="background-color: white;"></div>
-    <textarea name="content" id="content" class="my_hidden" value="{{post.content}}"></textarea>
+    <div id="editor-container" name="content"  value="{{{post.content}}}" style="background-color: white;"></div>
 
     <div class="box-form3 mt-3">
       <div class="blog-flex-start">
@@ -99,6 +98,9 @@
       $("#content").html(quillContent);
       return true;
   }
+  $("#btn-update").click((event) => {
+        alert("눌러짐");
+    });
 </script>
 
 <!-- Include the Quill library -->

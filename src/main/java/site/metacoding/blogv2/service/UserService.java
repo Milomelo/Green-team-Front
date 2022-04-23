@@ -58,6 +58,8 @@ public class UserService {
     @Transactional
     public void 회원수정(Integer id, UpdateDto updateDto) {
         // UPDATE user SET password = ?, email = ?, addr = ? WHERE id = ?
+        System.out.println("여기까지이이지지지2");
+
         Optional<User> userOp = userRepository.findById(id); // 영속화 (디비 row를 영속성 컨텍스에 옮김)
 
         if (userOp.isPresent()) {

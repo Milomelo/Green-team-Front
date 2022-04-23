@@ -44,11 +44,9 @@
         console.log(id);
         let updateDto = {
             blogname: $("#blogname").val(),
-            blogname: $("#blogname").val(),
             blogtitle: $("#blogtitle").val(),
             password: $("#password").val(),
             email: $("#email").val(),
-            imgurl: $("#imgurl").val(),
         }
 
         let response = await fetch(`/s/api/user/update/${id}`, {
